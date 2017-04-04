@@ -1,0 +1,14 @@
+<div class="container">
+    <h1>101 Chuck Norris facts</h1>
+
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Fact</th>
+        </tr>
+        <tr *ngFor="let fact of chuckNorrisFacts">
+            <td>{{ fact.factNo }}</td>
+            <td>{{ fact.fact }}</td>
+        </tr>
+    </table>
+</div>

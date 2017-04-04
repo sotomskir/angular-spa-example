@@ -1,9 +1,14 @@
 @import "~@angular/material/theming";
 // Define a mixin that accepts a theme and outputs the color styles for the component.
-@mixin nav-theme($theme) {
+@mixin app-theme($theme) {
   // Extract whichever individual palettes you need from the theme.
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
+
+  #main-toolbar {
+    background-color: mat-color($primary);
+    color: #fff;
+  }
 
   ul {
     li {
