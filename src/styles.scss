@@ -24,11 +24,23 @@ $theme: mat-light-theme($primary, $accent, $warn);
 @include angular-material-theme($theme);
 
 // Import your custom input theme file so you can call the custom-input-theme function
-@import 'app/components/app/app.component-theme';
+@import 'app/app.component-theme';
 
 // Using the $theme variable from the pre-built theme you can call the theming function
 @include app-theme($theme);
 
 body {
   font-family: 'Roboto', sans-serif;
+}
+
+a {
+  outline: none;
+}
+a:focus {
+  outline: none;
+}
+
+.container {
+  margin-top: 25px;
+  margin-bottom: 25px;
 }

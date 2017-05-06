@@ -1,0 +1,6 @@
+<div class="form-group" [ngClass]="{'has-error': control.invalid && control.touched}">
+  <ng-content></ng-content>
+  <span *ngIf="control.invalid && control.touched" class="help-block">
+    {{ errors }}
+  </span>
+</div>
