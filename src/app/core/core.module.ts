@@ -10,12 +10,16 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import { JwtHelper } from 'angular2-jwt';
 import { CanActivateViaAuthGuard } from './auth.guard';
 import { ValidationService } from './validation.service';
+import { TranslateService } from './translate/translate.service';
+import { TRANSLATION_PROVIDERS } from './translate/translations';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
     CommonModule,
+    BrowserModule,
   ],
-  exports: [SpinnerComponent, NavComponent],
+  exports: [SpinnerComponent, NavComponent, BrowserModule],
   declarations: [SpinnerComponent, NavComponent],
   providers: [
     ErrorHandlerService,
@@ -25,6 +29,8 @@ import { ValidationService } from './validation.service';
     JwtHelper,
     CanActivateViaAuthGuard,
     ValidationService,
+    TranslateService,
+    TRANSLATION_PROVIDERS,
   ]
 })
 export class CoreModule {

@@ -7,10 +7,11 @@ import { MaterialModule } from '@angular/material';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormGroupComponent } from './form-group/form-group.component';
+import { TranslatePipe } from './translate.pipe';
 
 @NgModule({
   imports: [
-    BrowserModule,
+    // BrowserModule,
     CommonModule,
     FormsModule,
     HttpModule,
@@ -19,11 +20,12 @@ import { FormGroupComponent } from './form-group/form-group.component';
   ],
   declarations: [
     InitCapsPipe,
+    TranslatePipe,
     PageNotFoundComponent,
     FormGroupComponent,
   ],
   exports: [
-    BrowserModule,
+    // BrowserModule,
     CommonModule,
     FormsModule,
     HttpModule,
@@ -32,6 +34,7 @@ import { FormGroupComponent } from './form-group/form-group.component';
     PageNotFoundComponent,
     ReactiveFormsModule,
     FormGroupComponent,
+    TranslatePipe,
   ]
 })
 export class SharedModule { }
