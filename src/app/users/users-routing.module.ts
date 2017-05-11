@@ -8,9 +8,9 @@ import { UsersCreateComponent } from './users.create.component';
 
 const routes: Routes = [
   { path: 'users', component: UsersIndexComponent, canActivate: [CanActivateViaAuthGuard] },
+  { path: 'users/create', component: UsersCreateComponent, canActivate: [CanActivateViaAuthGuard] },
   { path: 'users/:id', component: UsersShowComponent, canActivate: [CanActivateViaAuthGuard] },
   { path: 'users/:id/edit', component: UsersEditComponent, canActivate: [CanActivateViaAuthGuard] },
-  { path: 'users/create', component: UsersCreateComponent, canActivate: [CanActivateViaAuthGuard] },
 ];
 
 @NgModule({

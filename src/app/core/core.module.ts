@@ -11,13 +11,15 @@ import { JwtHelper } from 'angular2-jwt';
 import { CanActivateViaAuthGuard } from './auth.guard';
 import { ValidationService } from './validation.service';
 import { TranslateService } from './translate/translate.service';
-import { TRANSLATION_PROVIDERS } from './translate/translations';
 import { BrowserModule } from '@angular/platform-browser';
+import { NavService } from './nav/nav.service';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
+    SharedModule,
   ],
   exports: [SpinnerComponent, NavComponent, BrowserModule],
   declarations: [SpinnerComponent, NavComponent],
@@ -30,7 +32,7 @@ import { BrowserModule } from '@angular/platform-browser';
     CanActivateViaAuthGuard,
     ValidationService,
     TranslateService,
-    TRANSLATION_PROVIDERS,
+    // NavService,
   ]
 })
 export class CoreModule {

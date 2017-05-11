@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from './user.model';
 import { UserService } from './user.service';
-import { ConfigService } from '../core/config.service';
 
 @Component({
   templateUrl: 'users.edit.component.html',
@@ -16,8 +15,8 @@ export class UsersEditComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    public conf: ConfigService,
     private fb: FormBuilder,
+    private router: Router,
   ) {
     this.createForm();
   }
@@ -26,19 +25,28 @@ export class UsersEditComponent implements OnInit {
     this.route.params
     // (+) converts string 'id' to a number
       .switchMap((params: Params) => this.userService.getUser(+params['id']))
-      .subscribe((user: User) => this.user = user);
+      .subscribe((user: User) => {
+        this.userForm.patchValue(user);
+      });
   }
 
   createForm() {
     this.userForm = this.fb.group({
-      username: ['', Validators.required],
+      id: [''],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required],
     });
   }
 
-  save() {
-    // this.userService.
+  onSubmit() {
+    this.userService.patch(this.userForm.value)
+      .subscribe(() => {
+        this.router.navigate(['/users']);
+      });
+  }
+
+  cancel() {
+    this.router.navigate(['/users']);
   }
 }

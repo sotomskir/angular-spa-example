@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../core/validation.service';
 import { UserService } from '../users/user.service';
 import swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-form',
@@ -24,6 +25,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private validationService: ValidationService,
     private userService: UserService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -50,7 +52,14 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
     this.userService.register(this.registerForm.value)
       .subscribe(() => {
-        swal('Success', 'User registered', 'success');
+        swal({
+          title: 'Success',
+          text: 'User registered. Check your email.',
+          type: 'success',
+          confirmButtonText: 'Go to login page'
+        })
+          .then(() => this.router.navigate(['/login']))
+          .catch(() => this.router.navigate(['/login']));
       }, error => {
         swal('Error', error, 'error');
       });

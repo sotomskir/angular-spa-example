@@ -1,22 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { User } from './user.model';
 import { UserService } from './user.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: 'users.create.component.html',
-
 })
 export class UsersCreateComponent implements OnInit {
-  public user = new User;
+  public user = new User();
+  public userForm: FormGroup;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    this.route.params
-    // (+) converts string 'id' to a number
-      .switchMap((params: Params) => this.userService.getUser(+params['id']))
-      .subscribe((user: User) => this.user = user);
+  constructor(
+    private userService: UserService,
+    private fb: FormBuilder,
+    private router: Router,
+  ) {
+    this.createForm();
   }
 
+  ngOnInit(): void {
+  }
+
+  createForm() {
+    this.userForm = this.fb.group({
+      id: [''],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+    });
+  }
+
+  onSubmit() {
+    this.userService.create(this.userForm.value)
+      .subscribe(() => {
+        this.router.navigate(['/users']);
+      });
+  }
+
+  cancel() {
+    this.router.navigate(['/users']);
+  }
 }

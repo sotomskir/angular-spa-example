@@ -37,4 +37,20 @@ export class UserService {
       })
       .catch(this.handler.handleError);
   }
+
+  patch(user: User) {
+    return this.authHttp.patch(this.config.apiUrl + 'users/' + user.id, user)
+      .map((response: Response) => {
+        return response.json();
+      })
+      .catch(this.handler.handleError);
+  }
+
+  create(user: User) {
+    return this.authHttp.post(this.config.apiUrl + 'users', user)
+      .map((response: Response) => {
+        return response.json();
+      })
+      .catch(this.handler.handleError);
+  }
 }

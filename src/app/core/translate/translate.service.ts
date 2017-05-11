@@ -1,16 +1,22 @@
 import {Injectable, Inject} from '@angular/core';
-import { TRANSLATIONS } from './translations';
+import { LANG_EN_NAME, LANG_EN_TRANS } from './lang-en';
+import { LANG_PL_NAME, LANG_PL_TRANS } from './lang-pl';
 
 @Injectable()
 export class TranslateService {
   private _currentLang = 'pl';
+
+  private _translations = {
+    [LANG_EN_NAME]: LANG_EN_TRANS,
+    [LANG_PL_NAME]: LANG_PL_TRANS,
+  };
 
   public get currentLang() {
     return this._currentLang;
   }
 
   // inject our translations
-  constructor(@Inject(TRANSLATIONS) private _translations: any) {
+  constructor() {
   }
 
   public use(lang: string): void {

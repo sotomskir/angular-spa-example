@@ -1,13 +1,17 @@
-<header>
-  <div>
-    <h4>Tour of Heroes</h4>
-  </div>
+<md-sidenav opened="{{navService.isOpened()}}" class="example-sidenav">
   <nav>
+    <div id="user-panel">
+      <div id="user-icon">
+        <md-icon>person</md-icon>
+      </div>
+      <div id="user-data">
+        <div>{{ authService.user().firstName }} {{ authService.user().lastName }}</div>
+        <div>{{ authService.user().email }}</div>
+      </div>
+    </div>
     <ul>
-      <li *ngFor="let item of menuItems">
-        {{item}}
-      </li>
+      <li><a href="#" routerLink="chuck" (click)="navService.close()">101 Chuck Norris Facts</a></li>
+      <li><a href="#" routerLink="users" (click)="navService.close()">Users</a></li>
     </ul>
   </nav>
-  <br/>
-</header>
+</md-sidenav>

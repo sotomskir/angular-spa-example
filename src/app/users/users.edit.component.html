@@ -1,11 +1,7 @@
 <div class="container">
     <h1>Edit user details</h1>
     <div class="col-md-6 col-md-offset-3">
-        <form [formGroup]="userForm" class="form" action="{{ conf.apiUrl }}/users" method="post">
-            <div class="form-group">
-                <label for="username">User name</label>
-                <input id="username" class="form-control" name="username" formControlName="username">
-            </div>
+        <form [formGroup]="userForm" class="form" (submit)="onSubmit()">
             <div class="form-group">
                 <label for="email">E-mail</label>
                 <input id="email" class="form-control" name="email" formControlName="email">
@@ -18,10 +14,9 @@
                 <label for="lastName">Last name</label>
                 <input id="lastName" class="form-control" name="lastName" formControlName="lastName">
             </div>
-            <button type="submit" md-raised-button (click)="save()">Save</button>
+            <button type="submit" md-raised-button>Save</button>
+            <button md-raised-button (click)="cancel()">Cancel</button>
         </form>
-        <p>Form value: {{ userForm.value | json }}</p>
-        <p>Form status: {{ userForm.status | json }}</p>
 
     </div>
 </div>
