@@ -6,7 +6,7 @@ import { LANG_PL_NAME, LANG_PL_TRANS } from './lang-pl';
 export class TranslateService {
   private _currentLang = 'pl';
 
-  private _translations = {
+  private translations = {
     [LANG_EN_NAME]: LANG_EN_TRANS,
     [LANG_PL_NAME]: LANG_PL_TRANS,
   };
@@ -24,18 +24,14 @@ export class TranslateService {
     this._currentLang = lang;
   }
 
-  private translate(key: string): string {
+  public translate(key: string): string {
     // private perform translation
     const translation = key;
-    if (this._translations[this.currentLang] && this._translations[this.currentLang][key]) {
-      return this._translations[this.currentLang][key];
+    if (this.translations[this.currentLang] && this.translations[this.currentLang][key]) {
+      return this.translations[this.currentLang][key];
     }
 
     return translation;
   }
 
-  public instant(key: string) {
-    // call translation
-    return this.translate(key);
-  }
 }

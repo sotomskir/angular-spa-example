@@ -10,12 +10,9 @@ describe('Login test suite', () => {
   });
 
   it('should authorize chuck', () => {
-    page.getEmailInput().clear();
     page.getEmailInput().sendKeys('chuck@example.com');
-    page.getPasswordInput().clear();
     page.getPasswordInput().sendKeys('password');
     page.getSubmitButton().click();
-
-    browser.wait(EC.urlContains('home'), 5000);
+    browser.wait(EC.urlContains('home'));
   });
 });

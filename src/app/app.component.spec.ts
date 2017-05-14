@@ -10,27 +10,35 @@ import { AuthModule } from './auth.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '@angular/http';
 import { JwtHelper } from 'angular2-jwt';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { User } from './users/user.model';
+import { AuthService } from './core/auth.service';
 
 describe('AppComponent', () => {
+  let authServiceStub;
+  let comp;
+  let authService;
+  let fixture;
+
   beforeEach(() => {
+    authServiceStub = {
+      _user: new User(),
+      user: { name: 'Test User'}
+    };
+
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent,
-      ],
-      imports: [
-        BrowserModule,
-        FormsModule,
-        HttpModule,
-        AppRoutingModule,
-        AuthModule,
-        BrowserAnimationsModule,
-        MaterialModule
-      ],
-      providers: [
-        JwtHelper,
-      ],
+      declarations: [AppComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers:    [ {provide: AuthService, useValue: authServiceStub } ]
     });
     TestBed.compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    comp    = fixture.componentInstance;
+
+    // UserService from the root injector
+    authService = TestBed.get(AuthService);
+
   });
 
   it('should create the app', async(() => {
@@ -39,16 +47,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it(`should have as title 'app works!'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
-  }));
 });

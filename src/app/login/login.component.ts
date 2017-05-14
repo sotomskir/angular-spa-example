@@ -8,8 +8,8 @@ import { AuthService } from '../core/auth.service';
 })
 export class LoginComponent implements OnInit {
     model: any = {
-        username: 'chuck@example.com',
-        password: 'password'
+        username: '',
+        password: ''
     };
     loading = false;
     error = '';

@@ -1,6 +1,8 @@
-import { browser, element, by } from 'protractor';
+import { browser, element, by, protractor } from 'protractor';
+import { Page } from './page';
 
-export class LoginPage {
+export class LoginPage implements Page {
+  private EC = protractor.ExpectedConditions;
 
   getPageUrl() {
     return '/login';
@@ -20,5 +22,13 @@ export class LoginPage {
 
   getSubmitButton() {
     return element(by.id('submit'));
+  }
+
+  signInUser() {
+    this.navigateTo();
+    this.getEmailInput().sendKeys('chuck@example.com');
+    this.getPasswordInput().sendKeys('password');
+    return this.getSubmitButton().click();
+    // browser.wait(this.EC.urlContains('/home'), 5000);
   }
 }

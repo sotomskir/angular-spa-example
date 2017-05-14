@@ -12,23 +12,23 @@
                 </div>
             </div>
             <ul>
-                <li><a href="#" routerLink="chuck" (click)="sidenav.close()">101 Chuck Norris Facts</a></li>
-                <li><a href="#" routerLink="users" (click)="sidenav.close()">Users</a></li>
+                <li><a id="chuck" href="#" routerLink="chuck" (click)="sidenav.close()">101 Chuck Norris Facts</a></li>
+                <li><a id="users" href="#" routerLink="users" (click)="sidenav.close()">Users</a></li>
             </ul>
         </nav>
     </md-sidenav>
 
     <div class="example-sidenav-content">
         <md-toolbar id="main-toolbar">
-            <button md-button *ngIf="authService.isAuthenticated()" (click)="sidenav.open()"><md-icon>menu</md-icon></button>
+            <button id="menu" md-button *ngIf="authService.isAuthenticated()" (click)="sidenav.open()"><md-icon>menu</md-icon></button>
             <span>Spring REST API + Angular SPA Example</span>
 
             <!-- This fills the remaining space of the current row -->
             <span class="example-fill-remaining-space"></span>
 
-            <span *ngIf="!authService.isAuthenticated()"><button md-button routerLink="login">Log In</button></span>
-            <span *ngIf="!authService.isAuthenticated()"><button md-button routerLink="signup">Sign Up</button></span>
-            <span *ngIf=" authService.isAuthenticated()"><button md-button (click)="authService.logout()">Log Out</button></span>
+            <span *ngIf="!authService.isAuthenticated()"><button id="signin" md-button routerLink="login">Log In</button></span>
+            <span *ngIf="!authService.isAuthenticated()"><button id="signup" md-button routerLink="signup">Sign Up</button></span>
+            <span *ngIf=" authService.isAuthenticated()"><button id="logout" md-button (click)="authService.logout()">Log Out</button></span>
         </md-toolbar>
 
         <router-outlet></router-outlet>

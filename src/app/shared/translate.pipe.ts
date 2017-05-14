@@ -7,12 +7,12 @@ import { TranslateService } from '../core/translate/translate.service';
 
 export class TranslatePipe implements PipeTransform {
 
-  constructor(private _translate: TranslateService) { }
+  constructor(private translateService: TranslateService) { }
 
   transform(value: string, args: any[]): any {
     if (!value) {
       return;
     }
-    return this._translate.instant(value);
+    return this.translateService.translate(value);
   }
 }
